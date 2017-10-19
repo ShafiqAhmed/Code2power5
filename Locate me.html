@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #map { height: 100%;}
+      html, body { height: 100%; }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var map, infoWindow;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {center: {lat: -34.397, lng: 150.644},zoom: 5 });
+        infoWindow = new google.maps.InfoWindow;
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = { lat: position.coords.latitude, lng: position.coords.longitude};
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('You are Here la la la....');
+            infoWindow.open(map);
+            map.setCenter(pos);
+          });
+        } 
+      }
+    </script>
+	<!-- Please don't use my API_KEY :) -->
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBbg7T9TY5345EkjRqWrZHZda0rYETfks&callback=initMap">
+    </script>
+  </body>
+</html>
